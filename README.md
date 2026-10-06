@@ -1,4 +1,4 @@
-# MakamBox Studio 2.10.5
+# MakamBox Studio 2.10.6
 
 MakamBox Studio, Türk makam müziği kayıtlarında klasik MakamBox perde analizini koruyan; yönsel perde, kalış, glissando ve makamsal transkripsiyon incelemelerini aynı masaüstü uygulamasında birleştiren akademik araştırma yazılımıdır.
 
@@ -10,17 +10,19 @@ GitHub Releases bölümündeki şu dosyalar son kullanıcı içindir:
 
 | Dosya | Kullanım |
 |---|---|
-| `MakamBox-Studio-2.10.5-Windows-x64-Setup.exe` | Windows 10/11 x64 için kullanıcı hesabına kurulum |
-| `MakamBox-Studio-2.10.5-Windows-x64-Portable.zip` | Kurulum yapmadan taşınabilir kullanım |
-| `MakamBox-Studio-2.10.5-SHA256SUMS.txt` | İndirilen dosyaların bütünlük doğrulaması |
-| `MakamBox-Studio-2.10.5-Source.tar.gz` | Bu sürümün kaynak kodu ve derleme tarifleri |
-| `MakamBox-Studio-2.10.5-SBOM.spdx.json` | SPDX yazılım bileşen dökümü |
+| `MakamBox-Studio-2.10.6-Windows-x64-Setup.exe` | Windows 10/11 x64 için kullanıcı hesabına kurulum |
+| `MakamBox-Studio-2.10.6-Windows-x64-Portable.zip` | Kurulum yapmadan taşınabilir kullanım |
+| `MakamBox-Studio-2.10.6-macOS.dmg` | macOS uygulama ve disk kalıbı paketi |
+| `MakamBox-Studio-2.10.6-SHA256SUMS.txt` | İndirilen dosyaların bütünlük doğrulaması |
+| `MakamBox-Studio-2.10.6-Source.tar.gz` | Bu sürümün kaynak kodu ve derleme tarifleri |
+| `MakamBox-Studio-2.10.6-SBOM.spdx.json` | SPDX yazılım bileşen dökümü |
 
-[2.10.5 sürüm sayfası](../../releases/tag/v2.10.5)
+[2.10.6 sürüm sayfası](../../releases/tag/v2.10.6)
 
 ## Sistem gereksinimleri
 
 - Windows 10 22H2 veya Windows 11, 64 bit x86-64
+- Bu sürümdeki macOS DMG için Apple Silicon (arm64) Mac
 - En az 4 GB RAM; uzun kayıtlar ve Large model için 8 GB veya üzeri önerilir
 - Ses analizi için WAV, AIFF, AU veya MP3 dosyası
 - Mikrofonla kayıt için Windows mikrofon izni
@@ -31,16 +33,24 @@ Java 21, Node.js, LilyPond-WASM ve Windows MuScriptor yardımcısı pakete dahil
 
 Windows ARM64 cihazlarında paket yerel ARM uygulaması değildir; Windows 11'in x64 öykünmesi üzerinden çalışabilir.
 
+## macOS kurulumu
+
+1. `MakamBox-Studio-2.10.6-macOS.dmg` dosyasını açın.
+2. **MakamBox Studio.app** uygulamasını Uygulamalar klasörüne sürükleyin.
+3. Uygulamayı Uygulamalar klasöründen başlatın.
+
+Java, Node.js ve LilyPond-WASM macOS uygulamasına dahildir. Bu genel paket Apple tarafından noterlenmiş bir dağıtım değildir; Gatekeeper ilk açılışta geliştiriciyi doğrulayamadığını bildirirse Finder'da uygulamaya sağ tıklayıp **Aç** komutunu kullanın. SHA-256 değerini yayın dosyasıyla karşılaştırın.
+
 ## Windows kurulumu
 
 ### Kurucu
 
-1. `MakamBox-Studio-2.10.5-Windows-x64-Setup.exe` dosyasını indirin.
+1. `MakamBox-Studio-2.10.6-Windows-x64-Setup.exe` dosyasını indirin.
 2. Dosyanın SHA-256 değerini aşağıdaki yöntemle doğrulayın.
 3. Kurucuyu çalıştırın. Uygulama yönetici yetkisi istemeden `%LOCALAPPDATA%\Programs\MakamBox Studio` konumuna kurulur.
 4. Başlat menüsündeki **MakamBox Studio** kısayolunu açın.
 
-Kurucu eski MakamBox Studio uygulama klasörünü temizleyerek 2.10.5'i yerleştirir. Kişisel modeller ve tercihler uygulama klasörünün dışında tutulur.
+Kurucu eski MakamBox Studio uygulama klasörünü temizleyerek 2.10.6'yı yerleştirir. Kişisel modeller ve tercihler uygulama klasörünün dışında tutulur.
 
 ### Taşınabilir paket
 
@@ -54,7 +64,7 @@ Uygulamayı kapatın; Başlat menüsündeki kısayolu ve `%LOCALAPPDATA%\Program
 
 ### SmartScreen ve imza
 
-2.10.5 ikilileri Authenticode sertifikasıyla imzalanmamıştır. Bu nedenle Windows SmartScreen “Windows bilgisayarınızı korudu” veya “Bilinmeyen yayıncı” uyarısı gösterebilir. Bu uyarı işletim sistemi uyumsuzluğu anlamına gelmez. Uygulamaya Windows 10 ve Windows 11 için Microsoft'un ortak `supportedOS` kimliği gömülüdür; “Windows 10 veya 11 olmalı” biçimindeki eski metin karşılaştırması kullanılmaz.
+2.10.6 ikilileri Authenticode sertifikasıyla imzalanmamıştır. Bu nedenle Windows SmartScreen “Windows bilgisayarınızı korudu” veya “Bilinmeyen yayıncı” uyarısı gösterebilir. Bu uyarı işletim sistemi uyumsuzluğu anlamına gelmez. Uygulamaya Windows 10 ve Windows 11 için Microsoft'un ortak `supportedOS` kimliği gömülüdür; “Windows 10 veya 11 olmalı” biçimindeki eski metin karşılaştırması kullanılmaz.
 
 Bir yayını herkese açık dağıtırken en temiz çözüm EV/OV kod imzalama sertifikasıyla hem kurucuyu hem başlatıcıyı imzalamaktır.
 
@@ -63,8 +73,8 @@ Bir yayını herkese açık dağıtırken en temiz çözüm EV/OV kod imzalama s
 PowerShell'de:
 
 ```powershell
-Get-FileHash .\MakamBox-Studio-2.10.5-Windows-x64-Setup.exe -Algorithm SHA256
-Get-Content .\MakamBox-Studio-2.10.5-SHA256SUMS.txt
+Get-FileHash .\MakamBox-Studio-2.10.6-Windows-x64-Setup.exe -Algorithm SHA256
+Get-Content .\MakamBox-Studio-2.10.6-SHA256SUMS.txt
 ```
 
 Hesaplanan değer ile `SHA256SUMS` dosyasındaki değer aynı olmalıdır.
@@ -116,6 +126,8 @@ Space tuşu çal/duraklat işlevindedir. Grafiklerde sıkıştırma hareketi yat
 - Başlat, duraklat, durdur, saniyeye gitme ve %50–%125 perde-korumalı hız
 - Dalga biçimi, melodik spektrogram, perde izi ve olay katmanları
 - Yerel Windows dosya seçici, analiz yüzdesi ve uygulama içi kısayol menüsü
+- Bütün çalışma sekmelerinde ortak **sol menüyü gizle/göster** denetimi
+- Dar pencere yüksekliğinde sol menüyü dikey kaydırarak en alttaki denetimlere erişim
 
 ### Makamsal transkripsiyon ve LilyPond
 
@@ -128,6 +140,12 @@ Space tuşu çal/duraklat işlevindedir. Grafiklerde sıkıştırma hareketi yat
 - Çalınan nota başını kırmızı gösteren, porte ve sayfa değiştiren yatay nota takibi
 
 MuScriptor model ağırlıkları uygulamaya gömülmez. Kullanıcı seçtiğinde HTTPS ile indirilir, boyut ve SHA-256 doğrulanır. Ağırlıklar CC BY-NC 4.0 kapsamındadır; yalnız akademik ve ticari olmayan kullanım içindir. Kullanıcı analiz ettiği kayıt üzerinde gerekli haklara sahip olmalıdır.
+
+## Proje ve katkı bilgisi
+
+Bilge Miraç ATICI tarafından, Barış BOZKURT danışmanlığında geliştirilen GPL lisanslı MakamBox projesi temel alınmıştır. NeuralNote v2.0.0 ile uyumlu transkripsiyon bileşenleri ve LilyPond.org tarafından sunulan GNU LilyPond araçları eklenerek MakamBox Studio, Prof. Dr. Emre PINARBAŞI tarafından geliştirilmiştir. Uygulamanın akademik kullanım deneyimleri ve işlevsel değerlendirmeleri Arş. Gör. Dr. Naci PARLAR tarafından yürütülmektedir. 2026.
+
+Ayrıntılı atıf, kaynak ve lisans bilgileri [AUTHORS.md](AUTHORS.md), [SOURCES.md](SOURCES.md) ve [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) dosyalarındadır.
 
 ## Veri ve ağ kullanımı
 
@@ -173,7 +191,7 @@ Betik şunları yapar:
 - Node ve LilyPond-WASM kaynaklarını paketler.
 - Kurucu EXE, portable ZIP, kaynak arşivi, SPDX SBOM ve SHA-256 dosyası üretir.
 
-Çıktılar `outputs/MakamBox-Studio-2.10.5-GitHub-Release/` klasöründedir.
+Çıktılar `outputs/MakamBox-Studio-2.10.6-GitHub-Release/` klasöründedir.
 
 ## Test durumu ve yayın kapısı
 
@@ -192,4 +210,3 @@ Kaynak analiz/test paketi 28 regresyon testi içerir. Çapraz derleme PE32+ x64 
 MakamBox Studio, özgün MakamBox uyarlamaları nedeniyle GNU GPL sürüm 3 altında dağıtılır; yeni katkılar “GPL-3.0-or-later” olarak sunulur. Tam metin [LICENSE](LICENSE) dosyasındadır.
 
 Üçüncü taraf bildirimleri [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), tam kaynak revizyonları [SOURCES.md](SOURCES.md) ve lisans metinleri [licenses](licenses/) klasöründedir.
-
