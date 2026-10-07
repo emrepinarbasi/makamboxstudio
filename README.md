@@ -1,4 +1,4 @@
-# MakamBox Studio 2.10.6
+# MakamBox Studio 2.10.9
 
 MakamBox Studio, Türk makam müziği kayıtlarında klasik MakamBox perde analizini koruyan; yönsel perde, kalış, glissando ve makamsal transkripsiyon incelemelerini aynı masaüstü uygulamasında birleştiren akademik araştırma yazılımıdır.
 
@@ -10,19 +10,31 @@ GitHub Releases bölümündeki şu dosyalar son kullanıcı içindir:
 
 | Dosya | Kullanım |
 |---|---|
-| `MakamBox-Studio-2.10.6-Windows-x64-Setup.exe` | Windows 10/11 x64 için kullanıcı hesabına kurulum |
-| `MakamBox-Studio-2.10.6-Windows-x64-Portable.zip` | Kurulum yapmadan taşınabilir kullanım |
-| `MakamBox-Studio-2.10.6-macOS.dmg` | macOS uygulama ve disk kalıbı paketi |
-| `MakamBox-Studio-2.10.6-SHA256SUMS.txt` | İndirilen dosyaların bütünlük doğrulaması |
-| `MakamBox-Studio-2.10.6-Source.tar.gz` | Bu sürümün kaynak kodu ve derleme tarifleri |
-| `MakamBox-Studio-2.10.6-SBOM.spdx.json` | SPDX yazılım bileşen dökümü |
+| `MakamBox-Studio-2.10.9-Windows-x64-Setup.exe` | Windows 10/11 x64 için kullanıcı hesabına kurulum |
+| `MakamBox-Studio-2.10.9-Windows-x64-Portable.zip` | Kurulum yapmadan taşınabilir kullanım |
+| `MakamBox-Studio-2.10.9-macOS-Apple-Silicon-arm64-ADHOC-TEST.dmg` | macOS 13.5+ Apple Silicon (arm64) için yerel test paketi |
+| `MakamBox-Studio-2.10.9-macOS-Intel-x86_64-ADHOC-TEST.dmg` | macOS 13.5+ Intel (x86_64) için yerel test paketi |
+| `MakamBox-Studio-2.10.9-SHA256SUMS.txt` | İndirilen dosyaların bütünlük doğrulaması |
+| `MakamBox-Studio-2.10.9-Source.tar.gz` | Bu sürümün kaynak kodu ve derleme tarifleri |
+| `MakamBox-Studio-2.10.9-SBOM.spdx.json` | SPDX yazılım bileşen dökümü |
 
-[2.10.6 sürüm sayfası](../../releases/tag/v2.10.6)
+[2.10.9 sürüm sayfası](../../releases/tag/v2.10.9)
+
+## 2.10.9 güncellemesinde öne çıkanlar
+
+- Akademik Perde Editörü'ndeki nota gövdeleri, sürekli F0 eğrisini koruyan modern mavi/teal organik görünüme geçirildi.
+- Tam-ses sınırlarında `+8 Hc`, aynı frekanstaki üst perdenin `−1 Hc` bemolü olarak yazılır. Örneğin `La +8 Hc`, `Si −1 Hc` olarak adlandırılır ve LilyPond'da `bfc` karşılığını kullanır.
+- Bu enharmonik dönüşüm yalnız perde adlandırmasını ve notasyonu değiştirir; ölçülen frekans, C, Hc ve sapma değerleri aynen korunur.
+- PDF raporundaki hedef perde olayları dinamik olarak sayfalanır; son olay dâhil bütün olaylar eksiksiz dışa aktarılır.
+- Melodyne MIDI verisi yalnız olay zamanı ve bölütleme denetiminde kullanılır; MakamBox Studio'nun sürekli F0, C veya Hc ölçümü yerine geçirilmez.
+- Windows 10/11 için kurulum ve portable paketler; macOS için birbirinden bağımsız Apple Silicon ve Intel paketleri hazırlanmıştır.
+
+2.10.8 ile üretilmiş raporlar geriye dönük değiştirilmez. Yeni sayfalama ve enharmonik yazımı kullanmak için kaydı 2.10.9 ile yeniden analiz edip raporu yeniden dışa aktarın. Ayrıntılar [güncelleme kılavuzunda](UPDATE_2.10.9.md) ve [sürüm notlarında](RELEASE_NOTES_2.10.9.md) yer alır.
 
 ## Sistem gereksinimleri
 
 - Windows 10 22H2 veya Windows 11, 64 bit x86-64
-- Bu sürümdeki macOS DMG için Apple Silicon (arm64) Mac
+- **macOS 13.5 veya üzeri** çalıştıran Apple Silicon (arm64) ya da Intel (x86_64) Mac; işlemciye uygun DMG kullanılmalıdır
 - En az 4 GB RAM; uzun kayıtlar ve Large model için 8 GB veya üzeri önerilir
 - Ses analizi için WAV, AIFF, AU veya MP3 dosyası
 - Mikrofonla kayıt için Windows mikrofon izni
@@ -35,22 +47,26 @@ Windows ARM64 cihazlarında paket yerel ARM uygulaması değildir; Windows 11'in
 
 ## macOS kurulumu
 
-1. `MakamBox-Studio-2.10.6-macOS.dmg` dosyasını açın.
+1. M serisi Mac'te `MakamBox-Studio-2.10.9-macOS-Apple-Silicon-arm64-ADHOC-TEST.dmg`, Intel Mac'te `MakamBox-Studio-2.10.9-macOS-Intel-x86_64-ADHOC-TEST.dmg` dosyasını açın.
 2. **MakamBox Studio.app** uygulamasını Uygulamalar klasörüne sürükleyin.
 3. Uygulamayı Uygulamalar klasöründen başlatın.
+4. **MakamBox Studio > Hakkında** bölümünde sürümün `2.10.9` olduğunu doğrulayın.
 
-Java, Node.js ve LilyPond-WASM macOS uygulamasına dahildir. Bu genel paket Apple tarafından noterlenmiş bir dağıtım değildir; Gatekeeper ilk açılışta geliştiriciyi doğrulayamadığını bildirirse Finder'da uygulamaya sağ tıklayıp **Aç** komutunu kullanın. SHA-256 değerini yayın dosyasıyla karşılaştırın.
+Java, Node.js ve LilyPond-WASM macOS uygulamasına dahildir. Genel yayın dosyası Developer ID ile hardened-runtime imzalıdır; uygulama ve DMG Apple tarafından noterlenip biletleri pakete zımbalanır. SHA-256 değerini yayın dosyasıyla karşılaştırın.
+
+Kimlik bilgisi olmadan yerelde üretilen `ADHOC-TEST` son ekli Apple Silicon ve Intel DMG'leri yalnız geliştirici doğrulaması içindir. Gatekeeper tarafından engellenebilir; genel yayın veya son kullanıcı kurulumu için kullanılmamalıdır.
 
 ## Windows kurulumu
 
 ### Kurucu
 
-1. `MakamBox-Studio-2.10.6-Windows-x64-Setup.exe` dosyasını indirin.
+1. `MakamBox-Studio-2.10.9-Windows-x64-Setup.exe` dosyasını indirin.
 2. Dosyanın SHA-256 değerini aşağıdaki yöntemle doğrulayın.
 3. Kurucuyu çalıştırın. Uygulama yönetici yetkisi istemeden `%LOCALAPPDATA%\Programs\MakamBox Studio` konumuna kurulur.
 4. Başlat menüsündeki **MakamBox Studio** kısayolunu açın.
+5. **Yardım > Hakkında** bölümünde sürümün `2.10.9` olduğunu doğrulayın.
 
-Kurucu eski MakamBox Studio uygulama klasörünü temizleyerek 2.10.6'yı yerleştirir. Kişisel modeller ve tercihler uygulama klasörünün dışında tutulur.
+Kurucu eski MakamBox Studio uygulama klasörünü temizleyerek 2.10.9'u yerleştirir. Kişisel modeller ve tercihler uygulama klasörünün dışında tutulur.
 
 ### Taşınabilir paket
 
@@ -58,13 +74,15 @@ Kurucu eski MakamBox Studio uygulama klasörünü temizleyerek 2.10.6'yı yerle�
 2. Klasör yapısını bozmadan `MakamBox Studio.exe` dosyasını çalıştırın.
 3. `app`, `runtime` ve `resources` klasörlerini EXE'nin yanında bırakın.
 
+Uygulamayı doğrudan ZIP içinden çalıştırmayın. Çıkarılmış klasör USB belleğe taşınabilir; indirilen MuScriptor modelleri ise varsayılan olarak Windows kullanıcı profilindeki MakamBox Studio model klasöründe saklanır.
+
 ### Kaldırma
 
 Uygulamayı kapatın; Başlat menüsündeki kısayolu ve `%LOCALAPPDATA%\Programs\MakamBox Studio` klasörünü silin. İndirilen modelleri de kaldırmak isterseniz `%LOCALAPPDATA%\MakamBox Studio\models` klasörünü ayrıca silin.
 
 ### SmartScreen ve imza
 
-2.10.6 ikilileri Authenticode sertifikasıyla imzalanmamıştır. Bu nedenle Windows SmartScreen “Windows bilgisayarınızı korudu” veya “Bilinmeyen yayıncı” uyarısı gösterebilir. Bu uyarı işletim sistemi uyumsuzluğu anlamına gelmez. Uygulamaya Windows 10 ve Windows 11 için Microsoft'un ortak `supportedOS` kimliği gömülüdür; “Windows 10 veya 11 olmalı” biçimindeki eski metin karşılaştırması kullanılmaz.
+2.10.9 Windows ikilileri Authenticode sertifikasıyla imzalanmamıştır. Bu nedenle Windows SmartScreen “Windows bilgisayarınızı korudu” veya “Bilinmeyen yayıncı” uyarısı gösterebilir. Bu uyarı işletim sistemi uyumsuzluğu anlamına gelmez. Uygulamaya Windows 10 ve Windows 11 için Microsoft'un ortak `supportedOS` kimliği gömülüdür; “Windows 10 veya 11 olmalı” biçimindeki eski metin karşılaştırması kullanılmaz.
 
 Bir yayını herkese açık dağıtırken en temiz çözüm EV/OV kod imzalama sertifikasıyla hem kurucuyu hem başlatıcıyı imzalamaktır.
 
@@ -73,8 +91,16 @@ Bir yayını herkese açık dağıtırken en temiz çözüm EV/OV kod imzalama s
 PowerShell'de:
 
 ```powershell
-Get-FileHash .\MakamBox-Studio-2.10.6-Windows-x64-Setup.exe -Algorithm SHA256
-Get-Content .\MakamBox-Studio-2.10.6-SHA256SUMS.txt
+Get-FileHash .\MakamBox-Studio-2.10.9-Windows-x64-Setup.exe -Algorithm SHA256
+Get-FileHash .\MakamBox-Studio-2.10.9-Windows-x64-Portable.zip -Algorithm SHA256
+Get-Content .\MakamBox-Studio-2.10.9-SHA256SUMS.txt
+```
+
+macOS Terminal'de:
+
+```sh
+shasum -a 256 MakamBox-Studio-2.10.9-macOS-Apple-Silicon-arm64-ADHOC-TEST.dmg
+shasum -a 256 MakamBox-Studio-2.10.9-macOS-Intel-x86_64-ADHOC-TEST.dmg
 ```
 
 Hesaplanan değer ile `SHA256SUMS` dosyasındaki değer aynı olmalıdır.
@@ -103,7 +129,11 @@ Space tuşu çal/duraklat işlevindedir. Grafiklerde sıkıştırma hareketi yat
 ### Akademik perde ve olay analizi
 
 - Seçilen makamın perde cetveli ve zaman eksenli bütün güvenilir nota blokları
-- Hedef perdenin renkli, diğer perdelerin mavi gösterimi
+- YIN izindeki geçici yarım/üçte-bir frekans yanılgılarını harmonik kanıt ve zamansal süreklilikle düzelten perde izi
+- Perde sınırındaki çok kısa A–B–A salınımlarını azaltan kararlı olay bölütleme
+- Gerçek Hz/C/Hc verisini değiştirmeden, pes kayıtların kalış bölgesini Yegâh–Nevâ arasında gösteren otomatik görsel oktav yerleşimi
+- Gerçek F0 eğrisini izleyen, enerji/güvene göre gövde kalınlığı ve saydamlığı değişen modern mavi organik nota blokları
+- Hedef perdenin turkuaz, seçili olayın belirgin çerçeveli, çalınan bloğun koyu/kalın gösterimi
 - Seçilen perde için bağımsız alt/üst Hc toleransı
 - Giriş, çıkış ve net yön bakımından inici, çıkıcı ve yatay/karma sınıflandırma
 - Her basış, kalış, ortalama, süre, frekans, C ve Hc sapması
@@ -135,6 +165,7 @@ Space tuşu çal/duraklat işlevindedir. Grafiklerde sıkıştırma hareketi yat
 - Yerleşik F0 motoru; isteğe bağlı MuScriptor Small/Medium/Large sınır modelleri
 - Gerçek frekans ile makam perdesinin birlikte eşlenmesi
 - Yalnız resmî `turkish-makam.ly` tanımlarına dayanan 1, 4, 5 ve 8 Hc değiştirme işaretleri
+- Tam-ses sınırlarında alt notanın +8 Hc yazımını aynı frekanstaki üst notanın −1 Hc bemolüyle gösteren enharmonik yazım (ör. La +8 Hc = Si −1 Hc)
 - Makam donanımı, farklı nota uzunlukları, serbest yapıda ölçüsüz `cadenza`, anlamlı son sessizlikte puandorg
 - Mikrotonal pitch-bend MIDI, LilyPond kaynağı ve çok sayfalı PDF
 - Çalınan nota başını kırmızı gösteren, porte ve sayfa değiştiren yatay nota takibi
@@ -160,6 +191,9 @@ Ayrıntılar:
 - [Mimari](docs/ARCHITECTURE.md)
 - [Türkçe kullanım kılavuzu](docs/USER_GUIDE_TR.md)
 - [Rapor okuma kılavuzu](docs/REPORT_GUIDE_TR.md)
+- [Uşşak Taksim I 2.10.8 gerçek kayıt doğrulaması](docs/VALIDATION_USSAK_2.10.8.md)
+- [Tony/pYIN bağımsız karşılaştırma protokolü](docs/TONY_CONTROL_PROTOCOL_TR.md)
+- [Melodyne olay-zamanı ve gerçek perde eğrisi kontrol protokolü](docs/MELODYNE_CONTROL_PROTOCOL_TR.md)
 - [Windows kurulumu ve sorun giderme](docs/WINDOWS.md)
 - [Kaynak koddan derleme](docs/BUILDING.md)
 - [Yayın hazırlama](docs/RELEASING.md)
@@ -173,8 +207,12 @@ Ayrıntılar:
 Gerekenler: JDK 21, Node.js, Xcode komut satırı araçları ve isteğe bağlı CMake/Ninja.
 
 ```sh
-./build-muscriptor-helper.sh
-./build-macos.sh
+MACOS_TARGET_ARCH=arm64 ./build-muscriptor-helper.sh
+MACOS_TARGET_ARCH=arm64 ./build-macos.sh
+
+# Intel JDK 21'in gerçek x86_64 jpackage yolunu verin:
+MACOS_TARGET_ARCH=x86_64 ./build-muscriptor-helper.sh
+MACOS_TARGET_ARCH=x86_64 JPACKAGE_BIN=/intel-jdk-21/Contents/Home/bin/jpackage ./build-macos.sh
 ```
 
 ### Windows 10/11 paketini macOS üzerinde üretme
@@ -191,11 +229,11 @@ Betik şunları yapar:
 - Node ve LilyPond-WASM kaynaklarını paketler.
 - Kurucu EXE, portable ZIP, kaynak arşivi, SPDX SBOM ve SHA-256 dosyası üretir.
 
-Çıktılar `outputs/MakamBox-Studio-2.10.6-GitHub-Release/` klasöründedir.
+Çıktılar `outputs/MakamBox-Studio-2.10.9-GitHub-Release/` klasöründedir.
 
 ## Test durumu ve yayın kapısı
 
-Kaynak analiz/test paketi 28 regresyon testi içerir. Çapraz derleme PE32+ x64 yapısını, paket bütünlüğünü ve bağımlılıkların varlığını doğrular. Çapraz derleme tek başına gerçek Windows davranışını kanıtlamaz. Kamuya açık sürümden önce temiz Windows 10 22H2 ve Windows 11 x64 makinelerinde şu denemeler yapılmalıdır:
+Kaynak analiz/test paketi 34 regresyon testi içerir. Çapraz derleme PE32+ x64 yapısını, paket bütünlüğünü ve bağımlılıkların varlığını doğrular. Çapraz derleme tek başına gerçek Windows davranışını kanıtlamaz. Kamuya açık sürümden önce temiz Windows 10 22H2 ve Windows 11 x64 makinelerinde şu denemeler yapılmalıdır:
 
 - Installer ve portable başlangıç
 - Türkçe karakterli kullanıcı yolu
